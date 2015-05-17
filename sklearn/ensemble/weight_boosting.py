@@ -133,8 +133,6 @@ class BaseWeightBoosting(six.with_metaclass(ABCMeta, BaseEnsemble)):
         self.estimator_weights_ = np.zeros(self.n_estimators, dtype=np.float)
         self.estimator_errors_ = np.ones(self.n_estimators, dtype=np.float)
 
-        print(self.estimator_weights_)
-
         for iboost in range(self.n_estimators):
             # Boosting step
             sample_weight, estimator_weight, estimator_error = self._boost(
@@ -162,6 +160,8 @@ class BaseWeightBoosting(six.with_metaclass(ABCMeta, BaseEnsemble)):
             if iboost < self.n_estimators - 1:
                 # Normalize
                 sample_weight /= sample_weight_sum
+
+        print(self.estimator_weights_)
 
         return self
 
